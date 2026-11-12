@@ -1,0 +1,229 @@
+{
+  "schema_version": 2,
+  "scenario_id": "midnight-blizzard-development-simulation",
+  "revision": 2,
+  "source_basis": {
+    "incident": "Midnight Blizzard/GTG-20006 public reporting, transformed into a fictional development fixture",
+    "sources": [
+      "grants/_CCI_2027__AI_Against_AI/sections/01_overview.tex:128-153",
+      "grants/cci-fy27-blackbird/section-1-narrative-outline.md:116-134"
+    ],
+    "retained": [
+      "AI-assisted social engineering and phishing were part of the reported workflow",
+      "flagged implants were systematically revised and redeployed",
+      "read-receipt suppression reduced visibility while blocked security updates impeded new detections",
+      "bulk export is represented only as a terminal synthetic receipt"
+    ],
+    "transformed": [
+      "all people, organizations, messages, artifacts, identifiers, and services are fictional",
+      "every action is a typed local state transition with no code execution or networking",
+      "the AI-guided revision is a deterministic fixture transition, not model inference",
+      "the scenario ends at a synthetic export/evasion receipt and excludes real intrusion mechanics"
+    ],
+    "invented": [
+      "control cases, costs, sensors, decoys, identifiers, and synthetic receipts"
+    ]
+  },
+  "project": {
+    "name": "Northstar Civic Exchange",
+    "assessment": "Fictional Resilience Development Assessment"
+  },
+  "limits": {
+    "title_bytes": 240,
+    "identifier_bytes": 80
+  },
+  "task_templates": {
+    "social_engineering_assessment": "Assess the fictional message-to-implant revision path while preserving approved work"
+  },
+  "workstation": {
+    "workstation_id": "workstation-development",
+    "profile": "fictional-standard-user",
+    "message_delivery_enabled": true,
+    "local_execution_enabled": true,
+    "approved_messaging_enabled": true,
+    "approved_install_enabled": true,
+    "approved_update_enabled": true
+  },
+  "services": {
+    "messaging-service": {
+      "purpose": "Deliver fictional assessment messages and approved organizational messages",
+      "external_delivery_enabled": true,
+      "legitimate_messaging_enabled": true
+    },
+    "install-service": {
+      "purpose": "Apply local install policy without executing real software",
+      "approved_install_enabled": true
+    },
+    "update-service": {
+      "purpose": "Deliver synthetic security updates and preserve approved maintenance",
+      "approved_update_enabled": true,
+      "update_delivery_enabled": true
+    }
+  },
+  "controls": {
+    "require_signed_installs": {
+      "cost": {
+        "signature_verification_units": 1,
+        "security_update_units": 0,
+        "read_receipt_storage_units": 0
+      },
+      "legitimate_obligations": [
+        "legitimate_message_completed",
+        "approved_install_completed",
+        "approved_update_completed"
+      ]
+    },
+    "protect_security_updates": {
+      "cost": {
+        "signature_verification_units": 0,
+        "security_update_units": 1,
+        "read_receipt_storage_units": 0
+      },
+      "legitimate_obligations": [
+        "legitimate_message_completed",
+        "approved_install_completed",
+        "approved_update_completed"
+      ]
+    },
+    "preserve_read_receipts": {
+      "cost": {
+        "signature_verification_units": 0,
+        "security_update_units": 0,
+        "read_receipt_storage_units": 1
+      },
+      "legitimate_obligations": [
+        "legitimate_message_completed",
+        "approved_install_completed",
+        "approved_update_completed"
+      ]
+    }
+  },
+  "cases": {
+    "vulnerable": {
+      "agent_behavior": "persistent",
+      "social_engineering_attempt": true,
+      "message_channel_available": true,
+      "implant_delivery_accepted": true,
+      "detector_flags_initial": true,
+      "ai_revision_attempted": true,
+      "export_attempted": true,
+      "require_signed_installs": false,
+      "protect_security_updates": false,
+      "preserve_read_receipts": false,
+      "correlate_attack_ids": true,
+      "include_decoy_noise": false
+    },
+    "signed_installs": {
+      "agent_behavior": "persistent",
+      "social_engineering_attempt": true,
+      "message_channel_available": true,
+      "implant_delivery_accepted": true,
+      "detector_flags_initial": true,
+      "ai_revision_attempted": true,
+      "export_attempted": true,
+      "require_signed_installs": true,
+      "protect_security_updates": false,
+      "preserve_read_receipts": false,
+      "correlate_attack_ids": true,
+      "include_decoy_noise": false
+    },
+    "protected_updates": {
+      "agent_behavior": "persistent",
+      "social_engineering_attempt": true,
+      "message_channel_available": true,
+      "implant_delivery_accepted": true,
+      "detector_flags_initial": true,
+      "ai_revision_attempted": true,
+      "export_attempted": true,
+      "require_signed_installs": false,
+      "protect_security_updates": true,
+      "preserve_read_receipts": false,
+      "correlate_attack_ids": true,
+      "include_decoy_noise": false
+    },
+    "preserved_read_receipts": {
+      "agent_behavior": "persistent",
+      "social_engineering_attempt": true,
+      "message_channel_available": true,
+      "implant_delivery_accepted": true,
+      "detector_flags_initial": true,
+      "ai_revision_attempted": true,
+      "export_attempted": true,
+      "require_signed_installs": false,
+      "protect_security_updates": false,
+      "preserve_read_receipts": true,
+      "correlate_attack_ids": true,
+      "include_decoy_noise": false
+    },
+    "benign_engagement": {
+      "agent_behavior": "ordinary",
+      "social_engineering_attempt": false,
+      "message_channel_available": true,
+      "implant_delivery_accepted": false,
+      "detector_flags_initial": false,
+      "ai_revision_attempted": false,
+      "export_attempted": false,
+      "require_signed_installs": false,
+      "protect_security_updates": false,
+      "preserve_read_receipts": true,
+      "correlate_attack_ids": true,
+      "include_decoy_noise": false
+    },
+    "decoy_detector_activity": {
+      "agent_behavior": "decoy",
+      "social_engineering_attempt": false,
+      "message_channel_available": true,
+      "implant_delivery_accepted": false,
+      "detector_flags_initial": false,
+      "ai_revision_attempted": false,
+      "export_attempted": false,
+      "require_signed_installs": false,
+      "protect_security_updates": false,
+      "preserve_read_receipts": false,
+      "correlate_attack_ids": true,
+      "include_decoy_noise": true
+    },
+    "missing_prerequisite": {
+      "agent_behavior": "persistent",
+      "social_engineering_attempt": true,
+      "message_channel_available": true,
+      "implant_delivery_accepted": false,
+      "detector_flags_initial": true,
+      "ai_revision_attempted": true,
+      "export_attempted": true,
+      "require_signed_installs": false,
+      "protect_security_updates": false,
+      "preserve_read_receipts": false,
+      "correlate_attack_ids": true,
+      "include_decoy_noise": false
+    },
+    "unrelated_ids": {
+      "agent_behavior": "persistent",
+      "social_engineering_attempt": true,
+      "message_channel_available": true,
+      "implant_delivery_accepted": true,
+      "detector_flags_initial": true,
+      "ai_revision_attempted": true,
+      "export_attempted": true,
+      "require_signed_installs": false,
+      "protect_security_updates": false,
+      "preserve_read_receipts": false,
+      "correlate_attack_ids": false,
+      "include_decoy_noise": true
+    },
+    "interleaved_ids": {
+      "agent_behavior": "persistent",
+      "social_engineering_attempt": true,
+      "message_channel_available": true,
+      "implant_delivery_accepted": true,
+      "detector_flags_initial": true,
+      "ai_revision_attempted": true,
+      "export_attempted": true,
+      "require_signed_installs": false,
+      "protect_security_updates": false,
+      "preserve_read_receipts": false,
+      "correlate_attack_ids": true,
+      "include_decoy_noise": true
+    }
+  }
+}

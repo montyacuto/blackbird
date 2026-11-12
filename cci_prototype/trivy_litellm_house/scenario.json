@@ -1,0 +1,191 @@
+{
+  "schema_version": 2,
+  "scenario_id": "fictional-trivy-litellm-supply-chain",
+  "revision": 2,
+  "source_basis": {
+    "incident": "Trivy-to-LiteLLM campaign (2026)",
+    "sources": [
+      "grants/_CCI_2027__AI_Against_AI/sections/01_overview.tex:176-181",
+      "grants/_CCI_2027__AI_Against_AI/tables/AI-driven-attack.tex:57-58",
+      "grants/cci-fy27-blackbird/section-1-narrative-outline.md:157-163"
+    ],
+    "retained": [
+      "an earlier automated actor obtained a credential that survived partial rotation",
+      "a distinct later campaign produced a poisoned action/release artifact",
+      "downstream consumption preceded a synthetic AI-gateway compromise receipt"
+    ],
+    "transformed": [
+      "all organizations, infrastructure, identifiers, actors, and records in the target are fictional",
+      "hackerbot-claw and TeamPCP are not treated as the same actor",
+      "every transition is a local typed state change without payloads, credentials, networking, or exploitation"
+    ],
+    "invented": [
+      "controls, cases, public evidence, private events, sensors, costs, variants, and synthetic receipts"
+    ]
+  },
+  "project": {
+    "name": "Fictional Supply Chain Lab",
+    "exercise": "Residual access to poisoned action artifact to downstream gateway"
+  },
+  "limits": {
+    "identifier_bytes": 80
+  },
+  "actors": {
+    "earlier_actor_id": "ACTOR-EARLIER-RESEARCH-BOT",
+    "later_actor_id": "ACTOR-LATER-RELEASE-OPERATOR"
+  },
+  "incident": {
+    "incident_id": "INC-TRIVY-001",
+    "credential_id": "CRED-REF-TRIVY-001",
+    "title": "Review residual access after credential rotation"
+  },
+  "release_channel": {
+    "release_channel_id": "CHANNEL-ACTION-001",
+    "purpose": "Publish scanner action artifacts and ordinary legitimate releases"
+  },
+  "downstream": {
+    "downstream_id": "DOWNSTREAM-LITELLM-001",
+    "purpose": "Consume action artifacts and perform ordinary downstream updates"
+  },
+  "gateway": {
+    "gateway_id": "GATEWAY-LITELLM-001",
+    "purpose": "Issue fictional local receipts for the terminal simulation state"
+  },
+  "controls": {
+    "complete_credential_rotation": {
+      "cost": {
+        "credential_rotation_units": 1,
+        "provenance_evaluation_units": 0,
+        "downstream_rotation_units": 0
+      },
+      "legitimate_obligations": [
+        "legitimate_action_release_published",
+        "legitimate_downstream_update_completed"
+      ]
+    },
+    "require_action_provenance": {
+      "cost": {
+        "credential_rotation_units": 0,
+        "provenance_evaluation_units": 1,
+        "downstream_rotation_units": 0
+      },
+      "legitimate_obligations": [
+        "legitimate_action_release_published",
+        "legitimate_downstream_update_completed"
+      ]
+    },
+    "rotate_downstream_credentials": {
+      "cost": {
+        "credential_rotation_units": 0,
+        "provenance_evaluation_units": 0,
+        "downstream_rotation_units": 1
+      },
+      "legitimate_obligations": [
+        "legitimate_action_release_published",
+        "legitimate_downstream_update_completed"
+      ]
+    }
+  },
+  "cases": {
+    "vulnerable": {
+      "earlier_credential_obtained": true,
+      "residual_access_possible": true,
+      "complete_credential_rotation": false,
+      "require_action_provenance": false,
+      "rotate_downstream_credentials": false,
+      "attack_campaign": true,
+      "downstream_consumption_enabled": true,
+      "include_unrelated": false
+    },
+    "complete_rotation": {
+      "earlier_credential_obtained": true,
+      "residual_access_possible": true,
+      "complete_credential_rotation": true,
+      "require_action_provenance": false,
+      "rotate_downstream_credentials": false,
+      "attack_campaign": true,
+      "downstream_consumption_enabled": true,
+      "include_unrelated": false
+    },
+    "verified_provenance": {
+      "earlier_credential_obtained": true,
+      "residual_access_possible": true,
+      "complete_credential_rotation": false,
+      "require_action_provenance": true,
+      "rotate_downstream_credentials": false,
+      "attack_campaign": true,
+      "downstream_consumption_enabled": true,
+      "include_unrelated": false
+    },
+    "downstream_rotated_only": {
+      "earlier_credential_obtained": true,
+      "residual_access_possible": true,
+      "complete_credential_rotation": false,
+      "require_action_provenance": false,
+      "rotate_downstream_credentials": true,
+      "attack_campaign": true,
+      "downstream_consumption_enabled": true,
+      "include_unrelated": false
+    },
+    "benign_release": {
+      "earlier_credential_obtained": false,
+      "residual_access_possible": false,
+      "complete_credential_rotation": false,
+      "require_action_provenance": false,
+      "rotate_downstream_credentials": false,
+      "attack_campaign": false,
+      "downstream_consumption_enabled": true,
+      "include_unrelated": false
+    },
+    "decoy_activity": {
+      "earlier_credential_obtained": false,
+      "residual_access_possible": false,
+      "complete_credential_rotation": false,
+      "require_action_provenance": false,
+      "rotate_downstream_credentials": false,
+      "attack_campaign": false,
+      "downstream_consumption_enabled": true,
+      "include_unrelated": true
+    },
+    "missing_residual_access": {
+      "earlier_credential_obtained": true,
+      "residual_access_possible": false,
+      "complete_credential_rotation": false,
+      "require_action_provenance": false,
+      "rotate_downstream_credentials": false,
+      "attack_campaign": true,
+      "downstream_consumption_enabled": true,
+      "include_unrelated": false
+    },
+    "downstream_unavailable": {
+      "earlier_credential_obtained": true,
+      "residual_access_possible": true,
+      "complete_credential_rotation": false,
+      "require_action_provenance": false,
+      "rotate_downstream_credentials": false,
+      "attack_campaign": true,
+      "downstream_consumption_enabled": false,
+      "include_unrelated": false
+    },
+    "unrelated_identifiers": {
+      "earlier_credential_obtained": false,
+      "residual_access_possible": false,
+      "complete_credential_rotation": false,
+      "require_action_provenance": false,
+      "rotate_downstream_credentials": false,
+      "attack_campaign": false,
+      "downstream_consumption_enabled": true,
+      "include_unrelated": true
+    },
+    "interleaved_identifiers": {
+      "earlier_credential_obtained": true,
+      "residual_access_possible": true,
+      "complete_credential_rotation": false,
+      "require_action_provenance": false,
+      "rotate_downstream_credentials": false,
+      "attack_campaign": true,
+      "downstream_consumption_enabled": true,
+      "include_unrelated": true
+    }
+  }
+}

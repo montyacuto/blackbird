@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "ruleset_id": "trivy-litellm-poisoned-artifact-passive-detector",
+  "ruleset_version": 1,
+  "chain_id": "TRIVY-LITELLM-POISONED-ARTIFACT",
+  "required_bindings": [
+    "access_id",
+    "artifact_id",
+    "consumption_id",
+    "receipt_id"
+  ],
+  "distinct_bindings": [
+    ["earlier_actor_id", "later_actor_id"]
+  ],
+  "steps": [
+    {
+      "step_id": "residual_access",
+      "rule_id": "TRIVY-RESIDUAL-ACCESS",
+      "score": 25,
+      "records": [
+        {
+          "role": "credential_access",
+          "sensor": "credential-store",
+          "operation": "credential.access",
+          "outcome": "ok",
+          "links": {
+            "access_id": "access_id",
+            "credential_id": "credential_id",
+            "earlier_actor_id": "earlier_actor_id"
+          }
+        }
+      ]
+    },
+    {
+      "step_id": "poisoned_release",
+      "rule_id": "TRIVY-POISONED-ACTION-RELEASE",
+      "score": 25,
+      "records": [
+        {
+          "role": "action_release",
+          "sensor": "action-registry",
+          "operation": "action.release",
+          "outcome": "ok",
+          "links": {
+            "access_id": "access_id",
+            "artifact_id": "artifact_id",
+            "campaign_id": "campaign_id",
+            "earlier_actor_id": "earlier_actor_id",
+            "later_actor_id": "later_actor_id"
+          }
+        }
+      ]
+    },
+    {
+      "step_id": "downstream_consumption",
+      "rule_id": "LITELLM-DOWNSTREAM-CONSUMPTION",
+      "score": 25,
+      "records": [
+        {
+          "role": "consumption",
+          "sensor": "downstream-consumer",
+          "operation": "downstream.consume",
+          "outcome": "ok",
+          "links": {
+            "access_id": "access_id",
+            "artifact_id": "artifact_id",
+            "campaign_id": "campaign_id",
+            "consumption_id": "consumption_id",
+            "downstream_id": "downstream_id"
+          }
+        }
+      ]
+    },
+    {
+      "step_id": "gateway_receipt",
+      "rule_id": "LITELLM-SYNTHETIC-GATEWAY-RECEIPT",
+      "score": 25,
+      "records": [
+        {
+          "role": "receipt",
+          "sensor": "ai-gateway",
+          "operation": "gateway.receipt",
+          "outcome": "ok",
+          "links": {
+            "access_id": "access_id",
+            "artifact_id": "artifact_id",
+            "campaign_id": "campaign_id",
+            "consumption_id": "consumption_id",
+            "downstream_id": "downstream_id",
+            "receipt_id": "receipt_id"
+          }
+        }
+      ]
+    }
+  ]
+}

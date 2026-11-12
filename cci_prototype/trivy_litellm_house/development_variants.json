@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "variant_set_id": "trivy-litellm-development-variants-v1",
+  "scenario_id": "fictional-trivy-litellm-supply-chain",
+  "scenario_revision": 2,
+  "scenario_sha256": "3c2ca844b8e45b3f568179288dc12cb774bcb5674129c081243677817bfd9fc0",
+  "titles": [
+    "Review residual access after credential rotation",
+    "Assess action provenance and downstream artifact consumption"
+  ],
+  "configurations": [
+    {},
+    {"include_unrelated": true}
+  ],
+  "noise_operations": [
+    "credential.access",
+    "action.release",
+    "downstream.consume",
+    "gateway.receipt"
+  ],
+  "max_noise": 3
+}

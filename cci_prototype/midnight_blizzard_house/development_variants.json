@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "variant_set_id": "midnight-blizzard-development-variants-v1",
+  "scenario_id": "midnight-blizzard-development-simulation",
+  "scenario_revision": 2,
+  "scenario_sha256": "9c95cacc8effefefced38af01b7b3e0e27f5f7b795d1be4424b1c1a4fdf46ae4",
+  "titles": [
+    "Assess the fictional message-to-implant revision path while preserving approved work",
+    "Review the fictional social-engineering resilience path and approved maintenance"
+  ],
+  "configurations": [
+    {},
+    {"include_decoy_noise": true}
+  ],
+  "noise_operations": [
+    "legitimate.deliver",
+    "approved.install",
+    "approved.update",
+    "artifact.flag"
+  ],
+  "max_noise": 3
+}

@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "ruleset_id": "hackerbot-claw-untrusted-ci-passive-detector",
+  "ruleset_version": 1,
+  "chain_id": "UNTRUSTED-CI-CREDENTIAL",
+  "required_bindings": ["contribution_id", "review_id", "ci_run_id", "credential_receipt_id"],
+  "distinct_bindings": [],
+  "steps": [
+    {
+      "step_id": "reviewer_injection_refused",
+      "rule_id": "CLAW-REVIEWER-REFUSAL",
+      "score": 25,
+      "records": [
+        {
+          "role": "review_refusal",
+          "sensor": "code-reviewer",
+          "operation": "review.injection",
+          "outcome": "refused",
+          "links": {
+            "contribution_id": "contribution_id",
+            "review_id": "review_id"
+          }
+        }
+      ]
+    },
+    {
+      "step_id": "privileged_ci_executed",
+      "rule_id": "CLAW-PRIVILEGED-CI-EXECUTION",
+      "score": 35,
+      "records": [
+        {
+          "role": "ci_execution",
+          "sensor": "privileged-ci",
+          "operation": "ci.execute",
+          "outcome": "ok",
+          "links": {
+            "contribution_id": "contribution_id",
+            "review_id": "review_id",
+            "ci_run_id": "ci_run_id"
+          }
+        }
+      ]
+    },
+    {
+      "step_id": "synthetic_credential_receipt",
+      "rule_id": "CLAW-CREDENTIAL-RECEIPT",
+      "score": 40,
+      "records": [
+        {
+          "role": "credential_issue",
+          "sensor": "ci-credentials",
+          "operation": "credential.issue",
+          "outcome": "ok",
+          "links": {
+            "contribution_id": "contribution_id",
+            "review_id": "review_id",
+            "ci_run_id": "ci_run_id",
+            "credential_receipt_id": "credential_receipt_id"
+          }
+        }
+      ]
+    }
+  ]
+}

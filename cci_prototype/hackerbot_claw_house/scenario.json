@@ -1,0 +1,167 @@
+{
+  "schema_version": 2,
+  "scenario_id": "meridian-untrusted-ci",
+  "revision": 2,
+  "source_basis": {
+    "incident": "hackerbot-claw autonomous CI workflow attacks (2026-02)",
+    "sources": [
+      "grants/_CCI_2027__AI_Against_AI/sections/01_overview.tex:145-146,171-181",
+      "grants/_CCI_2027__AI_Against_AI/tables/AI-driven-attack.tex:47-48",
+      "grants/cci-fy27-blackbird/section-1-narrative-outline.md:157-165",
+      "https://stepsecurity.io/blog/hackerbot-claw-github-actions-exploitation"
+    ],
+    "retained": [
+      "an autonomous external bot submitted untrusted content to repository workflows",
+      "a guarded AI code reviewer refused one injection route",
+      "an alternate ordinary privileged-CI path remained and exposed a credential"
+    ],
+    "transformed": [
+      "all identities and infrastructure are fictional",
+      "review, CI execution, and credential issue are typed transitions without payload execution or networking",
+      "the scenario ends at a synthetic credential receipt and excludes later incident stages"
+    ],
+    "invented": [
+      "control cases, decoy activity, sensors, costs, and synthetic credential receipts"
+    ]
+  },
+  "project": {
+    "name": "Meridian Open Tools",
+    "repository": "meridian-build-tools"
+  },
+  "limits": {
+    "title_bytes": 240,
+    "identifier_bytes": 80
+  },
+  "submission_templates": {
+    "external_contribution": "External bot contribution: proposed repository automation maintenance",
+    "benign_contribution": "Maintainer contribution: update the documented build example"
+  },
+  "repository": {
+    "repository_id": "meridian-build-tools",
+    "visibility": "public-development-mirror",
+    "privileged_ci_triggers": ["pull-request", "trusted-release"]
+  },
+  "reviewer": {
+    "reviewer_id": "guarded-code-reviewer",
+    "purpose": "Review repository content without modifying CI or releases",
+    "route_scope": "reviewer-injection-route-only",
+    "tool_allowlist": ["read-repository", "post-review"]
+  },
+  "services": {
+    "privileged-ci": {
+      "purpose": "Run repository tests and release checks",
+      "ordinary_prerequisite": "review-recorded",
+      "privileged": true,
+      "trusted_workflows_enabled": true
+    },
+    "ci-credentials": {
+      "purpose": "Issue synthetic credentials to authorized CI jobs",
+      "credential_class": "synthetic-release-credential",
+      "real_credentials_present": false
+    }
+  },
+  "controls": {
+    "isolate_untrusted_ci": {
+      "cost": {"untrusted_ci_delay_units": 1, "secret_policy_evaluation_units": 0, "reviewer_coordination_units": 0},
+      "legitimate_obligations": ["legitimate_review_completed", "legitimate_test_completed", "legitimate_release_completed"]
+    },
+    "restrict_ci_secrets": {
+      "cost": {"untrusted_ci_delay_units": 0, "secret_policy_evaluation_units": 1, "reviewer_coordination_units": 0},
+      "legitimate_obligations": ["legitimate_review_completed", "legitimate_test_completed", "legitimate_release_completed"]
+    },
+    "require_reviewer_refusal": {
+      "cost": {"untrusted_ci_delay_units": 0, "secret_policy_evaluation_units": 0, "reviewer_coordination_units": 1},
+      "legitimate_obligations": ["legitimate_review_completed", "legitimate_test_completed", "legitimate_release_completed"]
+    }
+  },
+  "cases": {
+    "vulnerable": {
+      "injection_attempt": true,
+      "attempt_untrusted_ci": true,
+      "isolate_untrusted_ci": false,
+      "restrict_ci_secrets": false,
+      "require_reviewer_refusal": true,
+      "reviewer_available": true,
+      "ci_available": true,
+      "benign_submission": false,
+      "include_decoy_review": false
+    },
+    "isolated_ci": {
+      "injection_attempt": true,
+      "attempt_untrusted_ci": true,
+      "isolate_untrusted_ci": true,
+      "restrict_ci_secrets": false,
+      "require_reviewer_refusal": true,
+      "reviewer_available": true,
+      "ci_available": true,
+      "benign_submission": false,
+      "include_decoy_review": false
+    },
+    "restricted_secrets": {
+      "injection_attempt": true,
+      "attempt_untrusted_ci": true,
+      "isolate_untrusted_ci": false,
+      "restrict_ci_secrets": true,
+      "require_reviewer_refusal": true,
+      "reviewer_available": true,
+      "ci_available": true,
+      "benign_submission": false,
+      "include_decoy_review": false
+    },
+    "reviewer_only": {
+      "injection_attempt": true,
+      "attempt_untrusted_ci": true,
+      "isolate_untrusted_ci": false,
+      "restrict_ci_secrets": false,
+      "require_reviewer_refusal": true,
+      "reviewer_available": true,
+      "ci_available": true,
+      "benign_submission": false,
+      "include_decoy_review": true
+    },
+    "benign_contribution": {
+      "injection_attempt": false,
+      "attempt_untrusted_ci": false,
+      "isolate_untrusted_ci": false,
+      "restrict_ci_secrets": false,
+      "require_reviewer_refusal": true,
+      "reviewer_available": true,
+      "ci_available": true,
+      "benign_submission": true,
+      "include_decoy_review": false
+    },
+    "decoy_review_activity": {
+      "injection_attempt": true,
+      "attempt_untrusted_ci": false,
+      "isolate_untrusted_ci": false,
+      "restrict_ci_secrets": false,
+      "require_reviewer_refusal": true,
+      "reviewer_available": true,
+      "ci_available": true,
+      "benign_submission": false,
+      "include_decoy_review": true
+    },
+    "ci_unavailable": {
+      "injection_attempt": true,
+      "attempt_untrusted_ci": true,
+      "isolate_untrusted_ci": false,
+      "restrict_ci_secrets": false,
+      "require_reviewer_refusal": true,
+      "reviewer_available": true,
+      "ci_available": false,
+      "benign_submission": false,
+      "include_decoy_review": false
+    },
+    "interleaved_ci_runs": {
+      "injection_attempt": true,
+      "attempt_untrusted_ci": true,
+      "isolate_untrusted_ci": false,
+      "restrict_ci_secrets": false,
+      "require_reviewer_refusal": true,
+      "reviewer_available": true,
+      "ci_available": true,
+      "benign_submission": false,
+      "include_decoy_review": true
+    }
+  }
+}

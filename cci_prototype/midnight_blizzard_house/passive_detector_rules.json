@@ -1,0 +1,129 @@
+{
+  "schema_version": 1,
+  "ruleset_id": "midnight-blizzard-development-passive-detector",
+  "ruleset_version": 1,
+  "chain_id": "MB-DEVELOPMENT-CHAIN",
+  "required_bindings": [
+    "engagement_id",
+    "message_id",
+    "implant_id",
+    "detection_id",
+    "revision_id",
+    "artifact_id",
+    "export_receipt_id"
+  ],
+  "distinct_bindings": [],
+  "steps": [
+    {
+      "step_id": "social_engineering_delivery",
+      "rule_id": "MB-SOCIAL-DELIVERY",
+      "score": 15,
+      "records": [
+        {
+          "role": "delivery",
+          "sensor": "messaging-sensor",
+          "operation": "assessment.deliver",
+          "outcome": "ok",
+          "links": {
+            "engagement_id": "engagement_id",
+            "message_id": "message_id"
+          }
+        }
+      ]
+    },
+    {
+      "step_id": "implant_execution",
+      "rule_id": "MB-IMPLANT-EXECUTION",
+      "score": 20,
+      "records": [
+        {
+          "role": "execution",
+          "sensor": "endpoint-sensor",
+          "operation": "artifact.execute",
+          "outcome": "ok",
+          "links": {
+            "engagement_id": "engagement_id",
+            "message_id": "message_id",
+            "implant_id": "implant_id"
+          }
+        }
+      ]
+    },
+    {
+      "step_id": "detector_flag",
+      "rule_id": "MB-DETECTOR-FLAG",
+      "score": 15,
+      "records": [
+        {
+          "role": "flag",
+          "sensor": "detector-sensor",
+          "operation": "artifact.flag",
+          "outcome": "flagged",
+          "links": {
+            "engagement_id": "engagement_id",
+            "message_id": "message_id",
+            "implant_id": "implant_id",
+            "detection_id": "detection_id"
+          }
+        }
+      ]
+    },
+    {
+      "step_id": "guided_revision_and_redeployment",
+      "rule_id": "MB-GUIDED-REVISION",
+      "score": 25,
+      "records": [
+        {
+          "role": "revision",
+          "sensor": "revision-sensor",
+          "operation": "artifact.revise",
+          "outcome": "ok",
+          "links": {
+            "engagement_id": "engagement_id",
+            "message_id": "message_id",
+            "implant_id": "implant_id",
+            "detection_id": "detection_id",
+            "revision_id": "revision_id",
+            "artifact_id": "artifact_id"
+          }
+        },
+        {
+          "role": "redeployment",
+          "sensor": "endpoint-sensor",
+          "operation": "artifact.redeploy",
+          "outcome": "ok",
+          "links": {
+            "engagement_id": "engagement_id",
+            "message_id": "message_id",
+            "implant_id": "implant_id",
+            "detection_id": "detection_id",
+            "revision_id": "revision_id",
+            "artifact_id": "artifact_id"
+          }
+        }
+      ]
+    },
+    {
+      "step_id": "synthetic_export_evasion_receipt",
+      "rule_id": "MB-SYNTHETIC-EXPORT",
+      "score": 25,
+      "records": [
+        {
+          "role": "receipt",
+          "sensor": "export-sensor",
+          "operation": "synthetic.export_receipt",
+          "outcome": "ok",
+          "links": {
+            "engagement_id": "engagement_id",
+            "message_id": "message_id",
+            "implant_id": "implant_id",
+            "detection_id": "detection_id",
+            "revision_id": "revision_id",
+            "artifact_id": "artifact_id",
+            "export_receipt_id": "export_receipt_id"
+          }
+        }
+      ]
+    }
+  ]
+}

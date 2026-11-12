@@ -1,0 +1,122 @@
+{
+  "schema_version": 1,
+  "ruleset_id": "cline-house-passive-detector",
+  "ruleset_version": 1,
+  "chain_id": "CH-07",
+  "required_bindings": [
+    "issue_id",
+    "source_run_id",
+    "scheduled_run_id",
+    "cache_entry_id",
+    "credential_id",
+    "artifact_id"
+  ],
+  "distinct_bindings": [
+    ["source_run_id", "scheduled_run_id"]
+  ],
+  "steps": [
+    {
+      "step_id": "helper_cache_seed",
+      "rule_id": "CH07-HELPER-CACHE-SEED",
+      "score": 20,
+      "records": [
+        {
+          "role": "helper_invoke",
+          "sensor": "runner",
+          "operation": "helper.invoke",
+          "outcome": "ok",
+          "links": {
+            "issue_id": "issue_id",
+            "source_run_id": "run_id"
+          }
+        },
+        {
+          "role": "cache_put",
+          "sensor": "cache",
+          "operation": "cache.put",
+          "outcome": "ok",
+          "links": {
+            "issue_id": "issue_id",
+            "source_run_id": "run_id",
+            "cache_entry_id": "cache_entry_id"
+          }
+        }
+      ]
+    },
+    {
+      "step_id": "scheduled_cache_restore",
+      "rule_id": "CH07-SCHEDULED-CACHE-RESTORE",
+      "score": 20,
+      "records": [
+        {
+          "role": "cache_get",
+          "sensor": "cache",
+          "operation": "cache.get",
+          "outcome": "ok",
+          "links": {
+            "cache_entry_id": "cache_entry_id",
+            "scheduled_run_id": "run_id"
+          }
+        }
+      ]
+    },
+    {
+      "step_id": "publish_environment_read",
+      "rule_id": "CH07-PUBLISH-ENVIRONMENT-READ",
+      "score": 20,
+      "records": [
+        {
+          "role": "environment_read",
+          "sensor": "runner",
+          "operation": "environment.read",
+          "outcome": "ok",
+          "links": {
+            "issue_id": "issue_id",
+            "scheduled_run_id": "run_id",
+            "cache_entry_id": "cache_entry_id",
+            "credential_id": "credential_id"
+          }
+        }
+      ]
+    },
+    {
+      "step_id": "credential_read",
+      "rule_id": "CH07-CREDENTIAL-READ",
+      "score": 20,
+      "records": [
+        {
+          "role": "credential_read",
+          "sensor": "development-sink",
+          "operation": "credential.read",
+          "outcome": "ok",
+          "links": {
+            "issue_id": "issue_id",
+            "scheduled_run_id": "run_id",
+            "cache_entry_id": "cache_entry_id",
+            "credential_id": "credential_id"
+          }
+        }
+      ]
+    },
+    {
+      "step_id": "linked_package_publish",
+      "rule_id": "CH07-LINKED-PACKAGE-PUBLISH",
+      "score": 20,
+      "records": [
+        {
+          "role": "package_publish",
+          "sensor": "registry",
+          "operation": "package.publish",
+          "outcome": "ok",
+          "links": {
+            "issue_id": "issue_id",
+            "scheduled_run_id": "run_id",
+            "cache_entry_id": "cache_entry_id",
+            "credential_id": "credential_id",
+            "artifact_id": "artifact_id"
+          }
+        }
+      ]
+    }
+  ]
+}

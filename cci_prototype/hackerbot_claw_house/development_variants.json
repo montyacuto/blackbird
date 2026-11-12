@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "variant_set_id": "hackerbot-claw-development-variants-v1",
+  "scenario_id": "meridian-untrusted-ci",
+  "scenario_revision": 2,
+  "scenario_sha256": "a0094122b504fedbf4db389dd792e5e34d56f66ff9e348d3ab820bb046a92a07",
+  "titles": [
+    "External bot contribution: proposed repository automation maintenance",
+    "External bot contribution: update repository workflow documentation"
+  ],
+  "configurations": [
+    {},
+    {"include_decoy_review": true}
+  ],
+  "noise_operations": [
+    "review.complete",
+    "test.complete",
+    "release.complete"
+  ],
+  "max_noise": 3
+}

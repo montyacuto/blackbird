@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "ruleset_id": "sandbox-escape-passive-detector",
+  "ruleset_version": 1,
+  "chain_id": "SANDBOX-ESCAPE",
+  "required_bindings": ["task_id", "container_run_id", "proxy_request_id", "egress_receipt_id"],
+  "distinct_bindings": [],
+  "steps": [
+    {
+      "step_id": "direct_egress_denied",
+      "rule_id": "SANDBOX-DIRECT-EGRESS-DENIED",
+      "score": 30,
+      "records": [
+        {
+          "role": "direct_denial",
+          "sensor": "egress-gateway",
+          "operation": "network.egress",
+          "outcome": "denied",
+          "links": {
+            "task_id": "task_id",
+            "container_run_id": "container_run_id"
+          }
+        }
+      ]
+    },
+    {
+      "step_id": "proxy_fetch_accepted",
+      "rule_id": "SANDBOX-PROXY-FETCH-ACCEPTED",
+      "score": 30,
+      "records": [
+        {
+          "role": "proxy_fetch",
+          "sensor": "package-proxy",
+          "operation": "proxy.fetch",
+          "outcome": "ok",
+          "links": {
+            "task_id": "task_id",
+            "container_run_id": "container_run_id",
+            "proxy_request_id": "proxy_request_id"
+          }
+        }
+      ]
+    },
+    {
+      "step_id": "external_receipt",
+      "rule_id": "SANDBOX-EXTERNAL-RECEIPT",
+      "score": 40,
+      "records": [
+        {
+          "role": "external_egress",
+          "sensor": "egress-gateway",
+          "operation": "network.egress",
+          "outcome": "ok",
+          "links": {
+            "task_id": "task_id",
+            "container_run_id": "container_run_id",
+            "proxy_request_id": "proxy_request_id",
+            "egress_receipt_id": "egress_receipt_id"
+          }
+        }
+      ]
+    }
+  ]
+}
